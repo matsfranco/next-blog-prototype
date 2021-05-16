@@ -5,7 +5,7 @@ export default function Home(props) {
   return(
     <div>
       <header className="headerContainer">
-        <img src={props.avatar_url} />
+        <img src={props.gitHubAvatarUrl} />
         <Link href="/about">
           <a>
             <h1>Next Blog Prototype</h1>
@@ -38,9 +38,15 @@ export default function Home(props) {
 
 
 export async function getStaticProps() {
+  
+  const gitHubResponse = await fetch('https://api.github.com/users/matsfranco')
+    .then(res => res.json())
+
+  
+
   return {
     props: {
-      avatar_url: "https://avatars.githubusercontent.com/u/9143738?v=4"
+      gitHubAvatarUrl: gitHubResponse.avatar_url
     }
   }
 }
