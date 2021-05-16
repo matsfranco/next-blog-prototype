@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
+import Footer from '../components/Footer';
 
 const SubTitle = styled.h2`
   background-color: var(--primary);
@@ -10,7 +11,6 @@ const SubTitle = styled.h2`
 `;
 
 export default function Home(props) {
-  console.log(props);
   return(
     <div>
       <header className="headerContainer">
@@ -22,7 +22,7 @@ export default function Home(props) {
         </Link>
       </header>
 
-      <secton className="postsContainer">
+      <section className="postsContainer">
         <SubTitle>Posts</SubTitle>
         <article className="postsContainer__post">
           <a href="/">
@@ -40,13 +40,13 @@ export default function Home(props) {
             Resumo do Post
           </p>
         </article>
-      </secton>
-      <secton className="postsContainer">
+      </section >
+      <section  className="postsContainer">
         <SubTitle>Repositórios Favoritos</SubTitle>
         {
           props.gitHubPinnedRepos.map((pinnedRepo) => {
             return(
-              <article className="postContainer__post">  
+              <article className="postContainer__post" key={pinnedRepo.repo}> 
                 <a href="/">
                   {pinnedRepo.repo}
                 </a>
@@ -57,7 +57,8 @@ export default function Home(props) {
             )
           })
         }
-      </secton>
+      </section >
+      <Footer />
     </div>
   ) 
 }
