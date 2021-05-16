@@ -1,26 +1,23 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import App from 'next/app'
+import { ThemeProvider } from 'styled-components'
+import GlobalStyle from '../components/GlobalStyle'
 
-const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-`
 
 const theme = {
   colors: {
-    primary: '#0070f3',
+    primary: '#ff6a00',
   },
 }
 
-export default function App({ Component, pageProps }) {
-  return (
-    <>
-      <GlobalStyle />
+export default class nextBlogPrototype extends App {
+  
+  render() {
+    const { Component, pageProps } = this.props
+    return (
       <ThemeProvider theme={theme}>
+        <GlobalStyle />
         <Component {...pageProps} />
       </ThemeProvider>
-    </>
-  )
+    )
+  }
 }
